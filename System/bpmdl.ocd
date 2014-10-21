@@ -1,0 +1,818 @@
+<?xml version="1.0" standalone="yes" ?>
+<omron product="BP">
+    <!-- EU -->
+	<model name="M10-IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7080IT" />
+		<param name="model_id2" value="M7080" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="M9 Premium" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7080IT" />
+		<param name="model_id2" value="M7080" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="MIT Elite Plus" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7300IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="R7/637IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M6040IT" />
+		<param name="model_id2" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="RX Genius" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M6040IT" />
+		<param name="model_id2" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-637" connect="USB-SERIAL" hide="1">
+		<!-- model data -->
+		<param name="model_id" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-6040" connect="USB-SERIAL" hide="1">
+		<!-- model data -->
+		<param name="model_id" value="M6040IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="i-Q142" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M1040" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+    <!-- US -->
+	<model name="HEM-790IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7080IT" />
+		<param name="model_id2" value="M7080" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="Elite 7300IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7300IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-670IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M6040IT" />
+		<param name="model_id2" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-637" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-6040" connect="USB-SERIAL" hide="1">
+		<!-- model data -->
+		<param name="model_id" value="M6040IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="1500PRO" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M1040" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-7081IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7081IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+    <!-- JP -->
+	<model name="HEM-7301-IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7300IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-1040" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M1040" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-7080IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M7080IT" />
+		<param name="model_id2" value="M7080" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<param name="setup_mode" value="1" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="17" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="3" />
+		<param name="sumdata" value="1" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_fpulflg" value="14" size="2" start_bit="0" bit_len="1" />
+		<param name="ofs_moveflg" value="14" size="2" start_bit="1" bit_len="1" />
+		<param name="ofs_cnt" value="14" size="2" start_bit="4" bit_len="2" />
+		<param name="ofs_bcc" value="16" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-637IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-637" connect="USB-SERIAL" hide="1">
+		<!-- model data -->
+		<param name="model_id" value="M637IT" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+	<model name="HEM-705IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="M759P" />
+		<!-- info data -->
+		<param name="info_data" value="" />
+		<param name="info_put" value="" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="1" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="16" />
+		<param name="resv_length" value="15" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="1" />
+		<param name="sumdata" value="0" />
+
+		<!-- data offset -->
+		<param name="ofs_year" value="3" size="1" />
+		<param name="ofs_month" value="4" size="1" />
+		<param name="ofs_day" value="5" size="1" />
+		<param name="ofs_hour" value="6" size="1" />
+		<param name="ofs_min" value="7" size="1" />
+		<param name="ofs_sec" value="8" size="1" />
+		<param name="ofs_unit" value="9" size="1" />
+		<param name="ofs_sys" value="10" size="2" />
+		<param name="ofs_dia" value="12" size="1" />
+		<param name="ofs_pul" value="13" size="1" />
+		<param name="ofs_bcc" value="14" size="1" />
+		<param name="start_year" value="2000" />
+	</model>
+</omron>

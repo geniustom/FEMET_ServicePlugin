@@ -1,0 +1,156 @@
+<?xml version="1.0" standalone="yes" ?>
+<!--
+	オムロン歩数計　機器定義XML
+-->
+<omron product="NP">
+    <!-- EU -->
+	<model name="HJ-720IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="HJ-720IT" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="2" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down2.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="192" />
+		<param name="resv_length" value="37" />
+		<param name="resv_length2" value="25" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="2" />
+
+		<!-- data offset -->
+		<param name="ofs_wp_spec" value="3" size="2" />
+		<param name="ofs_wp_weight" value="5" size="2" />
+		<param name="ofs_wp_height" value="7" size="2" />
+		<param name="ofs_wp_stride" value="9" size="2" />
+
+		<param name="ofs_wd_tm_nwalk" value="4,8,12,16,20,24,28,32,52,56,60,64,68,72,76,80,100,104,108,112,116,120,124,128," size="2" />
+		<param name="ofs_wd_tm_nwalks" value="6,10,14,18,22,26,30,34,54,58,62,66,70,74,78,82,102,106,110,114,118,122,126,130," size="2" />
+		<param name="ofs_wd_nwalk" value="148" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_nwalks" value="150" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_twalks" value="153" size="2" bcd="4"/>
+		<param name="ofs_wd_carorie" value="155" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_distance" value="157" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_fat_burn" value="160" size="2" bcd="4"/>
+		<param name="ofs_wd_weight" value="164" size="2" />
+		<param name="ofs_wd_stride" value="166" size="2" />
+		<param name="ofs_wd_day_serial" value="162" size="2" />
+	</model>
+	<model name="HJ-710IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="HJ-710IT" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="2" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down2.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="192" />
+		<param name="resv_length" value="37" />
+		<param name="resv_length2" value="25" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="2" />
+
+		<!-- data offset -->
+		<param name="ofs_wp_spec" value="3" size="2" />
+		<param name="ofs_wp_weight" value="5" size="2" />
+		<param name="ofs_wp_height" value="7" size="2" />
+		<param name="ofs_wp_stride" value="9" size="2" />
+
+		<param name="ofs_wd_tm_nwalk" value="4,8,12,16,20,24,28,32,52,56,60,64,68,72,76,80,100,104,108,112,116,120,124,128," size="2" />
+		<param name="ofs_wd_tm_nwalks" value="6,10,14,18,22,26,30,34,54,58,62,66,70,74,78,82,102,106,110,114,118,122,126,130," size="2" />
+		<param name="ofs_wd_nwalk" value="148" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_nwalks" value="150" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_twalks" value="153" size="2" bcd="4"/>
+		<param name="ofs_wd_carorie" value="155" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_distance" value="157" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_fat_burn" value="160" size="2" bcd="4"/>
+		<param name="ofs_wd_weight" value="164" size="2" />
+		<param name="ofs_wd_stride" value="166" size="2" />
+		<param name="ofs_wd_day_serial" value="162" size="2" />
+	</model>
+    <!-- US -->
+	<model name="HJ-720IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="HJ-720IT" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="2" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down2.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="192" />
+		<param name="resv_length" value="37" />
+		<param name="resv_length2" value="25" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="2" />
+
+		<!-- data offset -->
+		<param name="ofs_wp_spec" value="3" size="2" />
+		<param name="ofs_wp_weight" value="5" size="2" />
+		<param name="ofs_wp_height" value="7" size="2" />
+		<param name="ofs_wp_stride" value="9" size="2" />
+
+		<param name="ofs_wd_tm_nwalk" value="4,8,12,16,20,24,28,32,52,56,60,64,68,72,76,80,100,104,108,112,116,120,124,128," size="2" />
+		<param name="ofs_wd_tm_nwalks" value="6,10,14,18,22,26,30,34,54,58,62,66,70,74,78,82,102,106,110,114,118,122,126,130," size="2" />
+		<param name="ofs_wd_nwalk" value="148" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_nwalks" value="150" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_twalks" value="153" size="2" bcd="4"/>
+		<param name="ofs_wd_carorie" value="155" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_distance" value="157" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_fat_burn" value="160" size="2" bcd="4"/>
+		<param name="ofs_wd_weight" value="164" size="2" />
+		<param name="ofs_wd_stride" value="166" size="2" />
+		<param name="ofs_wd_day_serial" value="162" size="2" />
+	</model>
+	<model name="HJ-710IT" connect="USB-SERIAL">
+		<!-- model data -->
+		<param name="model_id" value="HJ-710IT" />
+		<!-- connect param -->
+		<param name="hid_vender_id" value="0590" />
+		<param name="hid_product_id" value="0028" />
+		<param name="sir_speed" value="9600" />
+		<param name="sir_stop_bit" value="2" />
+		<param name="file_path"	value=".\" />
+		<param name="file_name"	value="down2.dat" />
+		<!-- data param -->
+		<param name="head_start" value="0" />
+		<param name="data_start" value="256" />
+		<param name="rec_length" value="192" />
+		<param name="resv_length" value="37" />
+		<param name="resv_length2" value="25" />
+		<param name="data_type" value="0" />
+		<param name="download_type" value="2" />
+
+		<!-- data offset -->
+		<param name="ofs_wp_spec" value="3" size="2" />
+		<param name="ofs_wp_weight" value="5" size="2" />
+		<param name="ofs_wp_height" value="7" size="2" />
+		<param name="ofs_wp_stride" value="9" size="2" />
+
+		<param name="ofs_wd_tm_nwalk" value="4,8,12,16,20,24,28,32,52,56,60,64,68,72,76,80,100,104,108,112,116,120,124,128," size="2" />
+		<param name="ofs_wd_tm_nwalks" value="6,10,14,18,22,26,30,34,54,58,62,66,70,74,78,82,102,106,110,114,118,122,126,130," size="2" />
+		<param name="ofs_wd_nwalk" value="148" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_nwalks" value="150" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_twalks" value="153" size="2" bcd="4"/>
+		<param name="ofs_wd_carorie" value="155" size="3" start_bit="4" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_distance" value="157" size="3" start_bit="0" bit_len="20" bcd="5"/>
+		<param name="ofs_wd_fat_burn" value="160" size="2" bcd="4"/>
+		<param name="ofs_wd_weight" value="164" size="2" />
+		<param name="ofs_wd_stride" value="166" size="2" />
+		<param name="ofs_wd_day_serial" value="162" size="2" />
+	</model>
+</omron>
