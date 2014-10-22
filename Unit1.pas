@@ -134,7 +134,7 @@ var
   cfg_FootText,cfg_FootText2:string;
   cfg_PrintID:integer;
   SocketBusyFlag:boolean;
-  SYS,DIA,HR,GM:string;
+  SYS,DIA,HR,GM,MEATIME:string;
 implementation
 
 {$R *.dfm}
@@ -146,8 +146,8 @@ var
 begin
   BarRec.IDNO:=BarCode.IDNo;
   BarRec.GwDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',now);
-  if form1.BP_TIME.Text<>'' then
-    BarRec.BP_MeaDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',strtodatetime(form1.BP_TIME.Text));
+  if MEATIME<>'' then
+    BarRec.BP_MeaDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',strtodatetime(MEATIME));
   if form1.GM_TIME.Text<>'' then
     BarRec.Gm_MeaDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',strtodatetime(form1.GM_TIME.Text));
 
@@ -169,8 +169,8 @@ begin
   begin
     SimRec.IDNO:=form1.SimCardMemo.Text;
     SimRec.GwDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',now);
-    if form1.BP_TIME.Text<>'' then
-      SimRec.BP_MeaDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',strtodatetime(form1.BP_TIME.Text));
+    if MEATIME<>'' then
+      SimRec.BP_MeaDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',strtodatetime(MEATIME));
     if form1.GM_TIME.Text<>'' then
       SimRec.GM_MeaDateTime:=formatdatetime('yyyy/mm/dd hh:nn:ss',strtodatetime(form1.GM_TIME.Text));
 
@@ -392,12 +392,14 @@ end;
      SYS:=OmronBP_SYS.Text;
      DIA:=OmronBP_DIA.Text;
      HR:=OmronBP_HR.Text;
+     MEATIME:= OmronBP_TIME.Text;
   end;
   if G_2.Visible then
   begin
      SYS:=BP_SYS.Text;
      DIA:=BP_DIA.Text;
      HR:=BP_HR.Text;
+     MEATIME:=BP_TIME.Text;
   end;
   if G_4.Visible then
   begin
