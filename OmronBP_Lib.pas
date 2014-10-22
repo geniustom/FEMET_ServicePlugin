@@ -168,9 +168,11 @@ begin
     sleep(50);
   end;
 }
-
+  //ret:=Occ_Init(0);
+  ret:=Occ_SetConnectDeviceName(pchar('HEM-7301-IT'));
   ret:=Occ_OpenDevice();
   ret:=Occ_DataClear();
+  ret:=Occ_End();
 end;
 
 
@@ -179,6 +181,7 @@ var i:integer;
 begin
   CMDTimer.Enabled:=false;
   GetLastMeasure();
+  DelAll();
 end;
 
 procedure TOmronBP.Execute;
