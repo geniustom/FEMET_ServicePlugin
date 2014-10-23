@@ -5,8 +5,8 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = #36960#26481#37291#38651#35037#32622#30435#25511#26381#21209#22120'V3.0'
-  ClientHeight = 527
-  ClientWidth = 800
+  ClientHeight = 528
+  ClientWidth = 799
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -21,6 +21,20 @@ object Form1: TForm1
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 21
+  object Button3: TSpeedButton
+    Left = 558
+    Top = 363
+    Width = 229
+    Height = 133
+    Caption = #19979#19968#20301
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -48
+    Font.Name = #27161#26999#39636
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = Button3Click
+  end
   object G_1: TGroupBox
     Left = 1113
     Top = 81
@@ -29,7 +43,7 @@ object Form1: TForm1
     Caption = #19978#28310#39636#37325#35336#36039#35338
     Color = clCream
     ParentColor = False
-    TabOrder = 13
+    TabOrder = 12
     Visible = False
     object Label11: TLabel
       Left = 9
@@ -38637,8 +38651,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 508
-    Width = 800
+    Top = 509
+    Width = 799
     Height = 19
     Panels = <>
     ParentFont = True
@@ -38815,21 +38829,6 @@ object Form1: TForm1
       OnChange = PrintSelChange
     end
   end
-  object Button3: TButton
-    Left = 558
-    Top = 366
-    Width = 229
-    Height = 130
-    Caption = #19979#19968#20301
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -48
-    Font.Name = #27161#26999#39636
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 11
-    OnClick = Button3Click
-  end
   object G_3: TGroupBox
     Left = 1116
     Top = 222
@@ -38838,7 +38837,7 @@ object Form1: TForm1
     Caption = #24247#23450#34880#27687#35336#36039#35338
     Color = clAqua
     ParentColor = False
-    TabOrder = 14
+    TabOrder = 13
     Visible = False
     object Label12: TLabel
       Left = 9
@@ -38910,7 +38909,7 @@ object Form1: TForm1
     Caption = #33775#24291#34880#31958#35336#36039#35338
     Color = clYellow
     ParentColor = False
-    TabOrder = 15
+    TabOrder = 14
     Visible = False
     object Label13: TLabel
       Left = 9
@@ -39011,7 +39010,7 @@ object Form1: TForm1
     Caption = #24247#23450#34880#27687#24515#38651#22294#27231
     Color = clAqua
     ParentColor = False
-    TabOrder = 16
+    TabOrder = 15
     Visible = False
     object Label15: TLabel
       Left = 255
@@ -39179,7 +39178,7 @@ object Form1: TForm1
     Caption = #27472#22982#40845#34880#22739#35336#36039#35338
     Color = clLime
     ParentColor = False
-    TabOrder = 17
+    TabOrder = 16
     Visible = False
     object Label16: TLabel
       Left = 9

@@ -63,7 +63,6 @@ type
     Timer2: TTimer;
     GroupBox9: TGroupBox;
     PrintSel: TComboBox;
-    Button3: TButton;
     LOGO: TImage;
     G_1: TGroupBox;
     Label11: TLabel;
@@ -101,6 +100,7 @@ type
     OmronBP_HR: TEdit;
     OmronBP_TIME: TEdit;
     OmronBP_LINK: TCheckBox;
+    Button3: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Timer1Timer(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -856,6 +856,7 @@ var
   ExecInfo:TShellExecuteInfo;
   i:integer;
 begin
+  Button3.Caption:='重新讀取'#10'下一位';
   form1.DoubleBuffered:=true;
 //===========================================================
   ConfigINI:=tinifile.create(ExtractFileDir(application.ExeName)+'\Config.ini');
