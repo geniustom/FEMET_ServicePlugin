@@ -652,6 +652,17 @@ procedure TForm1.Button3Click(Sender: TObject);
 var
   SHresult: Byte;
 begin
+  if Button3.Caption='連接裝置'#10'後請按此' then
+  begin
+     Button3.Caption:='重新讀取'#10'下一位';
+     OmronBPDevice.Resume;
+  end
+  else
+  begin
+     Button3.Caption:='連接裝置'#10'後請按此';
+     OmronBPDevice.Suspend;
+  end;
+
   if BPDevice<>nil then
   begin
       BPDevice.BP_Value_1:=0;
@@ -677,11 +688,12 @@ begin
       //form1.GM_Time.Text:='';
   end;
 
-      form1.BarCodeMEMO.Text:='';
-      CardReader.ID_NO:='';
+  form1.BarCodeMEMO.Text:='';
+  CardReader.ID_NO:='';
 
-      form1.BARXMLPATH.Text:='';
-      form1.SIMXMLPATH.Text:='';
+  form1.BARXMLPATH.Text:='';
+  form1.SIMXMLPATH.Text:='';
+
 {
   if BarCode<>nil then BarCode.Free;
   BarCode:=TBarCode.Create(500);
@@ -856,7 +868,8 @@ var
   ExecInfo:TShellExecuteInfo;
   i:integer;
 begin
-  Button3.Caption:='重新讀取'#10'下一位';
+  Button3.Caption:='連接裝置'#10'後請按此';
+  //Button3.Caption:='重新讀取'#10'下一位';
   form1.DoubleBuffered:=true;
 //===========================================================
   ConfigINI:=tinifile.create(ExtractFileDir(application.ExeName)+'\Config.ini');
