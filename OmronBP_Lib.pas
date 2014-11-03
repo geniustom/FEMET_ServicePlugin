@@ -40,6 +40,7 @@ type
     procedure Execute; override;
     procedure OnCMDTimer(Sender: TObject);
     procedure CanFetchData();
+    procedure StopFetchData();
   end;
 
   Function Occ_GetDeviceList(mode:Integer;modellist:pointer;conlist:pointer):Integer;cdecl;far;external 'occLib.dll';
@@ -76,6 +77,10 @@ begin
    CMDTimer.Enabled:=true;
 end;
 
+procedure TOmronBP.StopFetchData();
+begin
+   CMDTimer.Enabled:=false;
+end;
 
 procedure TOmronBP.GetLastMeasure();
 var
@@ -193,7 +198,7 @@ begin
   CMDTimer.Interval:=1;
   CMDTimer.Enabled:=false;
   CMDTimer.OnTimer:=OnCMDTimer;
-  CMDTimer.Enabled:=true;
+  CMDTimer.Enabled:=false;
 
    while true do
    begin

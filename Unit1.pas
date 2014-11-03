@@ -654,13 +654,14 @@ var
 begin
   if Button3.Caption='連接裝置'#10'後請按此' then
   begin
-     Button3.Caption:='重新讀取'#10'下一位';
-     OmronBPDevice.Resume;
+     Button3.Caption:='下一位';
+     OmronBPDevice.CanFetchData;
+     exit;
   end
-  else
+  else if Button3.Caption='下一位' then
   begin
      Button3.Caption:='連接裝置'#10'後請按此';
-     OmronBPDevice.Suspend;
+     OmronBPDevice.StopFetchData;
   end;
 
   if BPDevice<>nil then
@@ -677,7 +678,7 @@ begin
       OmronBPDevice.BP_Value_2:=0;
       OmronBPDevice.BP_Value_3:=0;
       OmronBPDevice.BPTime:=now;
-      OmronBPDevice.CanFetchData;
+      //OmronBPDevice.CanFetchData;
   end;
 
   if AbbotPort<>nil then
@@ -869,7 +870,7 @@ var
   i:integer;
 begin
   Button3.Caption:='連接裝置'#10'後請按此';
-  //Button3.Caption:='重新讀取'#10'下一位';
+  //Button3.Caption:='下一位';
   form1.DoubleBuffered:=true;
 //===========================================================
   ConfigINI:=tinifile.create(ExtractFileDir(application.ExeName)+'\Config.ini');
@@ -936,6 +937,7 @@ begin
     G_6.Visible:=true;
     OmronBPDevice:=TOmronBP.Create(true);
     OmronBPDevice.Resume;
+    //OmronBPDevice.StopFetchData;
   end;
 
 
