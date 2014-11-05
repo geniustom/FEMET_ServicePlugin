@@ -119,7 +119,6 @@ type
     procedure ServerSocket1ClientError(Sender: TObject;
       Socket: TCustomWinSocket; ErrorEvent: TErrorEvent;
       var ErrorCode: Integer);
-    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -655,7 +654,7 @@ procedure TForm1.Button3Click(Sender: TObject);
 var
   SHresult: Byte;
 begin
-  if Button3.Caption='連接裝置'#10'後請按此' then
+  if Button3.Caption='資料讀取' then
   begin
      Button3.Caption:='下一位';
      if OmronBPDevice<>nil then
@@ -671,7 +670,7 @@ begin
   end
   else if Button3.Caption='下一位' then
   begin
-     Button3.Caption:='連接裝置'#10'後請按此';
+     Button3.Caption:='資料讀取';
      if OmronBPDevice<>nil then
      begin
        OmronBPDevice.Terminate;
@@ -763,124 +762,6 @@ begin
    ErrorCode:=0;
 end;
 
-procedure TForm1.FormActivate(Sender: TObject);
-var
-  SHresult: Byte;
-  ConfigINI:tinifile;
-  ExecInfo:TShellExecuteInfo;
-  i:integer;
-begin
-  form1.DoubleBuffered:=true;
-//===========================================================
-  ConfigINI:=tinifile.create(ExtractFileDir(application.ExeName)+'\Config.ini');
-  cfg_UserMode          := ConfigINI.ReadBool('SETTING','USERMODE',true);
-  cfg_FootText          := ConfigINI.ReadString('SETTING','FOOTTEXT','遠　東　醫　電　科　技　關　心　您');
-  cfg_FootText2         := ConfigINI.ReadString('SETTING','FOOTTEXT2','電 話：(02)8913-5683');
-  cfg_PrintID           := ConfigINI.ReadInteger('SETTING','PRINTID',0);
-
-  ConfigINI.WriteInteger('SETTING','PRINTID',cfg_PrintID);
-  ConfigINI.WriteBool('SETTING','USERMODE',cfg_UserMode);
-  ConfigINI.WriteString('SETTING','FOOTTEXT',cfg_FootText);
-//===========================================================SQL DB
-
-  if ConfigINI.ReadBool('Satrue','Used',true) then
-  begin
-    G_1.Visible:=true;
-    SCPort:=TSCSCanPort.Create(true);
-    SCPort.Resume;
-  end;
-
-  if ConfigINI.ReadBool('MicroLife','Used',true) then
-  begin
-    G_2.Visible:=true;
-    BPDevice:=TMicroLife.Create(true);
-    BPDevice.Resume;
-  end;
-
-  if ConfigINI.ReadBool('Comdec','Used',true) then
-  begin
-    G_3.Visible:=true;
-    SPO2Port:=TSPO2ScanPort.Create(true);
-    SPO2Port.Resume;
-  end;
-
-  if ConfigINI.ReadBool('ComdecECG','Used',true) then
-  begin
-    G_ECG.Visible:=true;
-    ECG_Chart.Series[0].Clear;
-    for i:=0 to 2999 do
-    begin
-       ECG_Chart.Series[0].AddY(128);
-    end;
-    ECGPort:=TECGScanPort.Create(true);
-    ECGPort.Resume;
-  end;
-
-
-  if ConfigINI.ReadBool('Bionime','Used',true) then
-  begin
-    G_4.Visible:=true;
-    GMPort:=TGMScanPort.Create(true);
-    GMPort.Resume;
-  end;
-
-  if ConfigINI.ReadBool('Abbott','Used',true) then
-  begin
-    G_5.Visible:=true;
-    AbbotPort:=TSCanPort.Create(true);
-    AbbotPort.Resume;
-  end;
-
-  if ConfigINI.ReadBool('OmronBP','Used',true) then
-  begin
-    G_6.Visible:=true;
-    OmronBPDevice:=TOmronBP.Create(true);
-    OmronBPDevice.Resume;
-  end;
-
-
-  PrintSel.Items.DelimitedText:=Printer.Printers.DelimitedText;
-  PrintSel.ItemIndex:=cfg_PrintID;
-
-  BarCode:=TBarCode.Create(500);
-  SHresult := StartHook(BarCodeMEMO.Handle , Handle);
-
-  CardReader:=THCardReader.Create(true,@SimCardTrigger);
-  CardReader.Resume;
-
-  timer1.Enabled:=true;
-  timer2.Enabled:=true;
-  timer3.Enabled:=true;
-
-  if (ConfigINI.ReadBool('SETTING','USERMODE',true)=false) and
-       (ConfigINI.ReadBool('SETTING','ClientWebAutoStart',true)=true)  then
-  begin
-    WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
-    WinExec('taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
-    sleep(1000);
-    winexec(pchar(ExtractFileDir(application.ExeName)+'\FEMET_ClientWeb.EXE'),0);
-{
-    ZeroMemory(@ExecInfo,SizeOf(ExecInfo));
-    with ExecInfo do begin
-      cbSize := SizeOf(ExecInfo);
-      fMask := SEE_MASK_NOCLOSEPROCESS;
-      lpVerb := 'open';
-      lpFile := pchar(ExtractFileDir(application.ExeName)+'\FEMET_ClientWeb.EXE'); //路徑檔案(不一定是執行檔)
-      //lpParameters := 'c:autoexec.bat'; //參數 (不一定需要)
-      Wnd := Form1.Handle;
-      nShow := SW_SHOWNORMAL; //開啟的狀態
-    end;
-    ShellExecuteEx(@ExecInfo);
-}
-  end;
-
-//  if SHresult = 0 then ShowMessage('the Key Hook was Started, good');
-//  if SHresult = 1 then ShowMessage('the Key Hook was already Started');
-//  if SHresult = 2 then ShowMessage('the Key Hook can NOT be Started, bad');
-//  if SHresult = 4 then ShowMessage('MemoHandle is incorrect');
-end;
-
-
 procedure TForm1.FormCreate(Sender: TObject);
 var
   SHresult: Byte;
@@ -888,7 +769,7 @@ var
   ExecInfo:TShellExecuteInfo;
   i:integer;
 begin
-  Button3.Caption:='連接裝置'#10'後請按此';
+  Button3.Caption:='資料讀取';
   //Button3.Caption:='下一位';
   form1.DoubleBuffered:=true;
 //===========================================================

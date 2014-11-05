@@ -37,7 +37,9 @@ type
     BP_Value_3:integer;
     BPTime:TDateTime;
     DataLock:boolean;
+    NeedCloseDriver:boolean;
     procedure Execute; override;
+    procedure Terminate;
     procedure OnCMDTimer(Sender: TObject);
     procedure CanFetchData();
     procedure StopFetchData();
@@ -95,19 +97,20 @@ begin
   BP_Value_2:=0;
   BP_Value_3:=0;
 
-  ret:=Occ_Init(0);
-  ret:=Occ_SetConnectDeviceName(pchar('HEM-7301-IT'));
-
   ret:=-1;
-
   while ret<>0 do
   begin
+    ret:=Occ_Init(0);
+    ret:=Occ_SetConnectDeviceName(pchar('HEM-7301-IT'));
     ret:=Occ_OpenDevice();
+    NeedCloseDriver:=true;
     sleep(50);
+    application.processmessages;
   end;
   if ret<>0 then exit;
   BPIsLink:=true;
-  
+
+
   ret:=Occ_SetUserKbn(0);
   Occ_StartDownload();
 
@@ -115,6 +118,7 @@ begin
   begin
     sleep(100);
     ret:=Occ_GetDownloadStatus();
+    application.processmessages;
   end;
 
   data_cnt:= Occ_GetDataCnt();
@@ -142,6 +146,7 @@ begin
   BPTime:=now;
   //form1.memo1.Lines.Add(inttostr(bpdata.sys)+','+inttostr(bpdata.dia)+','+inttostr(bpdata.pulse));
   Occ_End();
+  NeedCloseDriver:=false;
   DataLock:=false;
 end;
 
@@ -174,10 +179,12 @@ begin
   end;
 }
   //ret:=Occ_Init(0);
+  NeedCloseDriver:=true;
   ret:=Occ_SetConnectDeviceName(pchar('HEM-7301-IT'));
   ret:=Occ_OpenDevice();
   ret:=Occ_DataClear();
   ret:=Occ_End();
+  NeedCloseDriver:=false;
 end;
 
 
@@ -185,26 +192,35 @@ procedure TOmronBP.OnCMDTimer(Sender: TObject);
 var i:integer;
 begin
   CMDTimer.Enabled:=false;
-  GetLastMeasure();
-  DelAll();
+
+end;
+
+procedure TOmronBP.Terminate;
+begin
+   if NeedCloseDriver=true then
+   begin
+      Occ_End();
+   end;
 end;
 
 procedure TOmronBP.Execute;
 begin
   self.Priority:= tpLower;
 
-
   CMDTimer:=TTimer.Create(nil);
-  CMDTimer.Interval:=1;
+  CMDTimer.Interval:=100;
   CMDTimer.Enabled:=false;
   CMDTimer.OnTimer:=OnCMDTimer;
-  CMDTimer.Enabled:=false;
+  NeedCloseDriver:=false;
 
-   while true do
+   while CMDTimer.Enabled=false do
    begin
-      Delay(100);
+      Delay(10);
       application.ProcessMessages;
    end;
+
+  GetLastMeasure();
+  DelAll();
 end;
 
 end.

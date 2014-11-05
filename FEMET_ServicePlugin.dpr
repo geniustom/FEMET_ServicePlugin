@@ -32,7 +32,7 @@ uses
 {$R *.res}
 
 begin
-  Mutex := CreateMutex(nil, false,pchar('遠東醫電裝置監控服務器V2.0'));
+  Mutex := CreateMutex(nil, false,pchar('遠東醫電裝置監控服務器V3.0'));
   if (Mutex = 0) OR (GetLastError = ERROR_ALREADY_EXISTS) then exit;
 
   if MacCheck.CheckUniComputer=false then
@@ -44,7 +44,7 @@ begin
   else
   begin
     Application.Initialize;
-    Application.Title := '遠東醫電裝置監控服務器V2.0';
+    Application.Title := '遠東醫電裝置監控服務器V3.0';
     Application.CreateForm(TForm1, Form1);
   WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.EXE',sw_Hide);
     Application.Run;
