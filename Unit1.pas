@@ -363,20 +363,23 @@ end;
 //========================================================OMRON血壓
 if G_6.Visible then
 begin
-  OmronBP_LINK.Checked:= OmronBPDevice.BPIsLink;
-  if (OmronBP_LINK.Checked)and(OmronBPDevice.BP_Value_1<>0)and(OmronBPDevice.DataLock=false)  then
-  begin
-    OmronBP_SYS.Text:=inttostr(OmronBPDevice.BP_Value_1);
-    OmronBP_DIA.Text:=inttostr(OmronBPDevice.BP_Value_2);
-    OmronBP_HR.Text:=inttostr(OmronBPDevice.BP_Value_3);
-    OmronBP_TIME.Text:=FormatDatetime('yy/mm/dd hh:nn',OmronBPDevice.BPTime);
-  end
-  else
-  begin
-    OmronBP_SYS.Text:='';
-    OmronBP_DIA.Text:='';
-    OmronBP_HR.Text:='';
-    OmronBP_TIME.Text:='';
+  try
+    OmronBP_LINK.Checked:= OmronBPDevice.BPIsLink;
+    if (OmronBP_LINK.Checked)and(OmronBPDevice.BP_Value_1<>0)and(OmronBPDevice.DataLock=false)  then
+    begin
+      OmronBP_SYS.Text:=inttostr(OmronBPDevice.BP_Value_1);
+      OmronBP_DIA.Text:=inttostr(OmronBPDevice.BP_Value_2);
+      OmronBP_HR.Text:=inttostr(OmronBPDevice.BP_Value_3);
+      OmronBP_TIME.Text:=FormatDatetime('yy/mm/dd hh:nn',OmronBPDevice.BPTime);
+    end
+    else
+    begin
+      OmronBP_SYS.Text:='';
+      OmronBP_DIA.Text:='';
+      OmronBP_HR.Text:='';
+      OmronBP_TIME.Text:='';
+    end;
+  except
   end;
 end;
 //========================================================
@@ -655,12 +658,28 @@ begin
   if Button3.Caption='連接裝置'#10'後請按此' then
   begin
      Button3.Caption:='下一位';
+     if OmronBPDevice<>nil then
+     begin
+       OmronBPDevice.Terminate;
+       OmronBPDevice:=nil;
+     end;
+     OmronBPDevice:=TOmronBP.Create(true);
+     OmronBPDevice.Resume;
+     sleep(100);
      OmronBPDevice.CanFetchData;
      exit;
   end
   else if Button3.Caption='下一位' then
   begin
      Button3.Caption:='連接裝置'#10'後請按此';
+     if OmronBPDevice<>nil then
+     begin
+       OmronBPDevice.Terminate;
+       OmronBPDevice:=nil;
+     end;
+     OmronBPDevice:=TOmronBP.Create(true);
+     OmronBPDevice.Resume;
+     sleep(100);
      OmronBPDevice.StopFetchData;
   end;
 
@@ -671,7 +690,7 @@ begin
       BPDevice.BP_Value_3:=0;
       BPDevice.BPTime:=now;
   end;
-
+{
   if OmronBPDevice<>nil then
   begin
       OmronBPDevice.BP_Value_1:=0;
@@ -680,7 +699,7 @@ begin
       OmronBPDevice.BPTime:=now;
       //OmronBPDevice.CanFetchData;
   end;
-
+}
   if AbbotPort<>nil then
   begin
       //AbbotPort.GMValue:=0;
