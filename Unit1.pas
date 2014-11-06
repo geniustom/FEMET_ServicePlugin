@@ -120,6 +120,7 @@ type
       Socket: TCustomWinSocket; ErrorEvent: TErrorEvent;
       var ErrorCode: Integer);
     procedure FormCreate(Sender: TObject);
+    procedure KillallThread;
   private
     { Private declarations }
   public
@@ -650,7 +651,22 @@ begin
   Button2.Enabled:=true;
 end;
 
-
+procedure TForm1.KillallThread;
+begin
+  timer1.Enabled:=false;
+  timer2.Enabled:=false;
+  timer3.Enabled:=false;
+  if SCPort<>nil then SCPort.Suspend;
+  if BPDevice<>nil then BPDevice.Suspend;
+  if SPO2Port<>nil then SPO2Port.Suspend;
+  if ECGPort<>nil then ECGPort.Suspend;
+  if GMPort<>nil then GMPort.Suspend;
+  if AbbotPort<>nil then AbbotPort.Suspend;
+  if OmronBPDevice<>nil then OmronBPDevice.Suspend;
+  //if BarCode<>nil then BarCode.Suspend;
+  if CardReader<>nil then CardReader.Suspend;
+  ServerSocket1.Close;
+end;
 
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -659,16 +675,21 @@ var
 begin
   if Button3.Caption='資料讀取' then
   begin
+     Button3.Caption:='下一位';
      OmronReBuildThread;
      OmronBPDevice.CanFetchData;
-     Button3.Caption:='下一位';
      exit;
   end
   else if Button3.Caption='下一位' then
   begin
-     OmronReBuildThread;
-     OmronBPDevice.StopFetchData;
-     Button3.Caption:='資料讀取';
+     //OmronReBuildThread;
+     //OmronBPDevice.StopFetchData;
+     //Button3.Caption:='資料讀取';
+     KillallThread;
+     sleep(100);
+     application.ProcessMessages;
+     winexec(pchar(ExtractFileDir(application.ExeName)+'\FEMET_ServicePlugin.exe'),0);
+     self.Close;
   end;
 
   if BPDevice<>nil then
