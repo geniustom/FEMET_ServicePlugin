@@ -38,6 +38,7 @@ type
     BPTime:TDateTime;
     DataLock:boolean;
     NeedCloseDriver:boolean;
+    FetchData:boolean;
     procedure Execute; override;
     procedure Terminate;
     procedure OnCMDTimer(Sender: TObject);
@@ -65,7 +66,7 @@ type
 
 var
   OmronBPDevice:TOmronBP;
-
+  procedure OmronReBuildThread();
 
 implementation
 
@@ -74,14 +75,33 @@ var
   Oconlist:array[0..1000] of char;
   bpdata:sBpData;
 
+procedure OmronReBuildThread();
+begin
+  if OmronBPDevice<>nil then
+  begin
+    if OmronBPDevice.Suspended=false then
+    begin
+      OmronBPDevice.Suspend;
+    end;
+    OmronBPDevice.Terminate;
+    OmronBPDevice:=nil;
+  end;
+  OmronBPDevice:=TOmronBP.Create(true);
+  OmronBPDevice.Resume;
+  sleep(100);
+end;
+
+
 procedure TOmronBP.CanFetchData();
 begin
-   CMDTimer.Enabled:=true;
+   //CMDTimer.Enabled:=true;
+   FetchData:=true;
 end;
 
 procedure TOmronBP.StopFetchData();
 begin
-   CMDTimer.Enabled:=false;
+   //CMDTimer.Enabled:=false;
+   FetchData:=false;
 end;
 
 procedure TOmronBP.GetLastMeasure();
@@ -206,7 +226,7 @@ end;
 procedure TOmronBP.Execute;
 begin
   self.Priority:= tpLower;
-
+{
   CMDTimer:=TTimer.Create(nil);
   CMDTimer.Interval:=100;
   CMDTimer.Enabled:=false;
@@ -218,9 +238,22 @@ begin
       Delay(10);
       application.ProcessMessages;
    end;
+}
+   FetchData:=false;
+   while FetchData=false do
+   begin
+      Delay(10);
+      application.ProcessMessages;
+   end;
 
   GetLastMeasure();
   DelAll();
+
+  while true do
+  begin
+      Delay(10);
+      application.ProcessMessages;
+  end;
 end;
 
 end.

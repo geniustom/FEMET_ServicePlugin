@@ -650,36 +650,25 @@ begin
   Button2.Enabled:=true;
 end;
 
+
+
+
 procedure TForm1.Button3Click(Sender: TObject);
 var
   SHresult: Byte;
 begin
   if Button3.Caption='資料讀取' then
   begin
-     Button3.Caption:='下一位';
-     if OmronBPDevice<>nil then
-     begin
-       OmronBPDevice.Terminate;
-       OmronBPDevice:=nil;
-     end;
-     OmronBPDevice:=TOmronBP.Create(true);
-     OmronBPDevice.Resume;
-     sleep(100);
+     OmronReBuildThread;
      OmronBPDevice.CanFetchData;
+     Button3.Caption:='下一位';
      exit;
   end
   else if Button3.Caption='下一位' then
   begin
-     Button3.Caption:='資料讀取';
-     if OmronBPDevice<>nil then
-     begin
-       OmronBPDevice.Terminate;
-       OmronBPDevice:=nil;
-     end;
-     OmronBPDevice:=TOmronBP.Create(true);
-     OmronBPDevice.Resume;
-     sleep(100);
+     OmronReBuildThread;
      OmronBPDevice.StopFetchData;
+     Button3.Caption:='資料讀取';
   end;
 
   if BPDevice<>nil then
