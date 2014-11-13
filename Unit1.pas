@@ -656,6 +656,9 @@ begin
   timer1.Enabled:=false;
   timer2.Enabled:=false;
   timer3.Enabled:=false;
+  ServerSocket1.Close;
+  application.ProcessMessages;
+{
   if SCPort<>nil then SCPort.Suspend;
   if BPDevice<>nil then BPDevice.Suspend;
   if SPO2Port<>nil then SPO2Port.Suspend;
@@ -663,9 +666,57 @@ begin
   if GMPort<>nil then GMPort.Suspend;
   if AbbotPort<>nil then AbbotPort.Suspend;
   if OmronBPDevice<>nil then OmronBPDevice.Suspend;
-  //if BarCode<>nil then BarCode.Suspend;
   if CardReader<>nil then CardReader.Suspend;
-  ServerSocket1.Close;
+
+  application.ProcessMessages;
+
+
+  if SCPort<>nil then SCPort.Terminate;
+  if BPDevice<>nil then BPDevice.Terminate;
+  if SPO2Port<>nil then SPO2Port.Terminate;
+  if ECGPort<>nil then ECGPort.Terminate;
+  if GMPort<>nil then GMPort.Terminate;
+  if AbbotPort<>nil then AbbotPort.Terminate;
+  if OmronBPDevice<>nil then OmronBPDevice.Terminate;
+  if CardReader<>nil then CardReader.Terminate;
+  application.ProcessMessages;
+}
+end;
+
+procedure WriteBat();
+var T:Textfile;
+begin
+   assignfile(T,ExtractFileDir(application.ExeName)+'\run.bat');
+   rewrite(T);
+   //writeln(T,'taskkill /F /T /IM FEMET_ServicePlugin.EXE');
+   //writeln(T,'ping -n 2 127.0.0.1 >NUL');
+   writeln(T,pchar('start '+ExtractFileDir(application.ExeName)+'\FEMET_ServicePlugin.exe'));
+   closefile(T);
+end;
+
+
+{ Execute a complete shell command line without waiting. }
+
+function OpenCmdLine(const CmdLine: string;
+  WindowState: Word): Boolean;
+var
+  SUInfo: TStartupInfo;
+  ProcInfo: TProcessInformation;
+begin
+  { Enclose filename in quotes to take care of
+    long filenames with spaces. }
+  FillChar(SUInfo, SizeOf(SUInfo), #0);
+  with SUInfo do
+  begin
+    cb := SizeOf(SUInfo);
+    dwFlags := STARTF_USESHOWWINDOW;
+    wShowWindow := WindowState;
+  end;
+  Result := CreateProcess(nil, PChar(CmdLine), nil, nil, False,
+    CREATE_NEW_CONSOLE or
+    NORMAL_PRIORITY_CLASS, nil,
+    nil {PChar(ExtractFilePath(Filename))},
+    SUInfo, ProcInfo);
 end;
 
 
@@ -676,8 +727,13 @@ begin
   if Button3.Caption='資料讀取' then
   begin
      Button3.Caption:='下一位';
-     OmronReBuildThread;
+     application.ProcessMessages;
+     //OmronReBuildThread;
+     OmronBPDevice:=TOmronBP.Create(true);
+     application.ProcessMessages;
+     OmronBPDevice.Resume;
      OmronBPDevice.CanFetchData;
+     application.ProcessMessages;
      exit;
   end
   else if Button3.Caption='下一位' then
@@ -685,10 +741,11 @@ begin
      //OmronReBuildThread;
      //OmronBPDevice.StopFetchData;
      //Button3.Caption:='資料讀取';
-     KillallThread;
-     sleep(100);
-     application.ProcessMessages;
-     winexec(pchar(ExtractFileDir(application.ExeName)+'\FEMET_ServicePlugin.exe'),0);
+     //KillallThread;
+     WriteBat;
+     //winexec(pchar(ExtractFileDir(application.ExeName)+'\run.bat'),0);
+     //ShellExecuteA(0, 'open', pchar('COMMAND.COM /C '+ExtractFileDir(application.ExeName)+'\run.bat'), 0, 0, SW_SHOW);
+     OpenCmdLine(ExtractFileDir(application.ExeName)+'\run.bat',0);
      self.Close;
   end;
 
@@ -845,8 +902,8 @@ begin
   if ConfigINI.ReadBool('OmronBP','Used',true) then
   begin
     G_6.Visible:=true;
-    OmronBPDevice:=TOmronBP.Create(true);
-    OmronBPDevice.Resume;
+    //OmronBPDevice:=TOmronBP.Create(true);
+    //OmronBPDevice.Resume;
     //OmronBPDevice.StopFetchData;
   end;
 

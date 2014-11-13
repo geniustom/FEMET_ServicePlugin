@@ -39295,7 +39295,6 @@ object Form1: TForm1
       ParentFont = False
       ReadOnly = True
       TabOrder = 3
-      Text = '10/08/10 12:20'
     end
     object OmronBP_LINK: TCheckBox
       Left = 9
@@ -39303,14 +39302,12 @@ object Form1: TForm1
       Width = 244
       Height = 23
       Caption = #34880#22739#35336#24050#36899#32218#26044'USB'
-      Checked = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -24
       Font.Name = #24494#36575#27491#40657#39636
       Font.Style = [fsBold]
       ParentFont = False
-      State = cbChecked
       TabOrder = 4
     end
   end
@@ -39321,7 +39318,7 @@ object Form1: TForm1
     Left = 186
   end
   object ServerSocket1: TServerSocket
-    Active = True
+    Active = False
     Port = 66666
     ServerType = stNonBlocking
     OnClientRead = ServerSocket1ClientRead
