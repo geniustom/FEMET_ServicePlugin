@@ -728,10 +728,10 @@ begin
   begin
      Button3.Caption:='¤U¤@¦ì';
      application.ProcessMessages;
-     //OmronReBuildThread;
-     OmronBPDevice:=TOmronBP.Create(true);
+     OmronReBuildThread;
+     //OmronBPDevice:=TOmronBP.Create(true);
      application.ProcessMessages;
-     OmronBPDevice.Resume;
+     //OmronBPDevice.Resume;
      OmronBPDevice.CanFetchData;
      application.ProcessMessages;
      exit;
@@ -902,9 +902,9 @@ begin
   if ConfigINI.ReadBool('OmronBP','Used',true) then
   begin
     G_6.Visible:=true;
-    //OmronBPDevice:=TOmronBP.Create(true);
-    //OmronBPDevice.Resume;
-    //OmronBPDevice.StopFetchData;
+    OmronBPDevice:=TOmronBP.Create(true);
+    OmronBPDevice.Resume;
+    OmronBPDevice.StopFetchData;
   end;
 
 
