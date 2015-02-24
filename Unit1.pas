@@ -135,6 +135,7 @@ var
   cfg_PrintID:integer;
   SocketBusyFlag:boolean;
   SYS,DIA,HR,GM,MEATIME:string;
+  SimCardInfo:string;
 implementation
 
 {$R *.dfm}
@@ -227,8 +228,7 @@ begin
    if TriggerType=0 then
      Pack.Add(form1.BarCodeMEMO.Text)               //ID_No
    else
-     Pack.Add(form1.SimCardMemo.Text);
-
+     Pack.Add(SimCardInfo);
    if TriggerType=0 then
      Pack.Add(form1.BARXMLPATH.Text)               //XML-Path
    else
@@ -248,6 +248,7 @@ begin
                 '生　　日：' + BirthDate+#13#10+
                 '性　　別：' + Sex;
     SimCardMemo.Text:= CardReader.ID_NO;
+    SimCardInfo:= CardReader.ID_NO +','+HolderName+','+BirthDate+','+Sex;
   end;
   ReaderOK.Checked:=CardReader.ReaderIsOK;
   CardOK.Checked:=CardReader.CardIsOK;
@@ -488,6 +489,7 @@ begin
       SC_Value.TEXT:='';
       SPO2_Value.TEXT:='';
       CardReader.ID_NO:='';
+      SimCardInfo:='';
       SIMXMLPATH.Text:='';
       Socket.SendText('OK');
    end;
@@ -921,9 +923,12 @@ begin
   timer2.Enabled:=true;
   timer3.Enabled:=true;
 
+  
+
   if (ConfigINI.ReadBool('SETTING','USERMODE',true)=false) and
        (ConfigINI.ReadBool('SETTING','ClientWebAutoStart',true)=true)  then
   begin
+    ServerSocket1.Open;
     WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
     WinExec('taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
     sleep(1000);

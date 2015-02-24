@@ -6,7 +6,7 @@ object Form1: TForm1
   BorderStyle = bsSingle
   Caption = #36960#26481#37291#38651#35037#32622#30435#25511#26381#21209#22120'V3.0'
   ClientHeight = 528
-  ClientWidth = 799
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -38405,8 +38405,8 @@ object Form1: TForm1
     end
   end
   object G_2: TGroupBox
-    Left = 1113
-    Top = 147
+    Left = 288
+    Top = 159
     Width = 259
     Height = 235
     Caption = #30334#30053#34880#22739#35336#36039#35338
@@ -38652,7 +38652,7 @@ object Form1: TForm1
   object StatusBar1: TStatusBar
     Left = 0
     Top = 509
-    Width = 799
+    Width = 800
     Height = 19
     Panels = <>
     ParentFont = True
@@ -38702,16 +38702,17 @@ object Form1: TForm1
   end
   object GroupBox6: TGroupBox
     Left = 831
-    Top = 312
+    Top = 345
     Width = 229
-    Height = 160
+    Height = 142
     Caption = #35712#21345#27231#29376#24907#30908
     TabOrder = 5
     object SimStatus: TMemo
-      Left = 12
-      Top = 24
-      Width = 205
-      Height = 127
+      Left = 2
+      Top = 23
+      Width = 225
+      Height = 117
+      Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -38724,16 +38725,17 @@ object Form1: TForm1
   end
   object GroupBox7: TGroupBox
     Left = 831
-    Top = 156
+    Top = 201
     Width = 229
-    Height = 157
+    Height = 142
     Caption = #26781#30908#27231#29376#24907#30908
     TabOrder = 6
     object BarStatus: TMemo
-      Left = 12
-      Top = 21
-      Width = 205
-      Height = 127
+      Left = 2
+      Top = 23
+      Width = 225
+      Height = 117
+      Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -38748,14 +38750,15 @@ object Form1: TForm1
     Left = 831
     Top = 0
     Width = 229
-    Height = 154
+    Height = 196
     Caption = #29376#24907#30908#35498#26126
     TabOrder = 7
     object Memo2: TMemo
-      Left = 12
-      Top = 21
-      Width = 205
-      Height = 124
+      Left = 2
+      Top = 23
+      Width = 225
+      Height = 171
+      Align = alClient
       Color = clBlack
       Font.Charset = ANSI_CHARSET
       Font.Color = clFuchsia
@@ -38769,7 +38772,10 @@ object Form1: TForm1
         '4. '#26781#30908#27231#36899#25509'(True'#26377' False'#28961')'
         '5. '#35442#35037#32622#35320#30332'(True'#26377' False'#28961')'
         '6. '#35320#30332#24460#35712#21462#30340#36523#20998#35657#34399
-        '7. XML'#36664#20986#27284#30456#23565#36335#24465)
+        '7. XML'#36664#20986#27284#30456#23565#36335#24465
+        '8. '#20581#20445#21345#22995#21517
+        '9. '#20581#20445#21345#29983#26085
+        '10.'#20581#20445#21345#24615#21029)
       ParentFont = False
       ReadOnly = True
       TabOrder = 0
@@ -39171,8 +39177,8 @@ object Form1: TForm1
     end
   end
   object G_6: TGroupBox
-    Left = 288
-    Top = 159
+    Left = 1116
+    Top = 435
     Width = 259
     Height = 235
     Caption = #27472#22982#40845#34880#22739#35336#36039#35338
