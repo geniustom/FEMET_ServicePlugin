@@ -27,7 +27,8 @@ uses
   SPO2_Lib in 'SPO2_Lib.pas',
   Scales_LIB in 'Scales_Lib.pas',
   ECG_Lib in 'ECG_Lib.pas',
-  OmronBP_Lib in 'OmronBP_Lib.pas';
+  OmronBP_Lib in 'OmronBP_Lib.pas',
+  msg in '..\..\Dropbox\投資理財相關\選擇權部位調整程式\msg.pas' {Alert};
 
 {$R *.res}
 
@@ -50,9 +51,10 @@ begin
   else
   begin
     Application.Initialize;
-    Application.Title := '遠東醫電裝置監控服務器V2.0';
-    Application.CreateForm(TForm1, Form1);
-    WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.EXE',sw_Hide);
+    Application.Title := '遠東醫電裝置監控服務器V3.0';
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TAlert, Alert);
+  WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.EXE',sw_Hide);
     Application.Run;
   end;
 

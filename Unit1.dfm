@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 199
-  Top = 129
+  Left = 312
+  Top = 157
   BiDiMode = bdLeftToRight
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -39323,12 +39323,12 @@ object Form1: TForm1
     OnTimer = Timer1Timer
     Left = 186
   end
-  object ServerSocket1: TServerSocket
+  object VitalSocket: TServerSocket
     Active = False
     Port = 66666
     ServerType = stNonBlocking
-    OnClientRead = ServerSocket1ClientRead
-    OnClientError = ServerSocket1ClientError
+    OnClientRead = VitalSocketClientRead
+    OnClientError = VitalSocketClientError
     Left = 210
   end
   object PopupMenu1: TPopupMenu

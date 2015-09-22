@@ -39,7 +39,7 @@ type
     Label8: TLabel;
     StatusBar1: TStatusBar;
     BP_LINK: TCheckBox;
-    ServerSocket1: TServerSocket;
+    VitalSocket: TServerSocket;
     GroupBox5: TGroupBox;
     BARXMLPATH: TEdit;
     Label6: TLabel;
@@ -106,7 +106,7 @@ type
     procedure N1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure N2Click(Sender: TObject);
-    procedure ServerSocket1ClientRead(Sender: TObject;
+    procedure VitalSocketClientRead(Sender: TObject;
       Socket: TCustomWinSocket);
     procedure CoolTrayIcon1DblClick(Sender: TObject);
     procedure EraseSCClick(Sender: TObject);
@@ -116,7 +116,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
-    procedure ServerSocket1ClientError(Sender: TObject;
+    procedure VitalSocketClientError(Sender: TObject;
       Socket: TCustomWinSocket; ErrorEvent: TErrorEvent;
       var ErrorCode: Integer);
     procedure FormCreate(Sender: TObject);
@@ -438,7 +438,7 @@ end;
 
 
 
-procedure TForm1.ServerSocket1ClientRead(Sender: TObject;Socket: TCustomWinSocket);
+procedure TForm1.VitalSocketClientRead(Sender: TObject;Socket: TCustomWinSocket);
 var
 Packet:string;
 VitalData:TStringList;
@@ -658,7 +658,7 @@ begin
   timer1.Enabled:=false;
   timer2.Enabled:=false;
   timer3.Enabled:=false;
-  ServerSocket1.Close;
+  VitalSocket.Close;
   application.ProcessMessages;
 {
   if SCPort<>nil then SCPort.Suspend;
@@ -824,7 +824,7 @@ begin
 
 end;
 
-procedure TForm1.ServerSocket1ClientError(Sender: TObject;
+procedure TForm1.VitalSocketClientError(Sender: TObject;
   Socket: TCustomWinSocket; ErrorEvent: TErrorEvent;
   var ErrorCode: Integer);
 begin
@@ -928,7 +928,7 @@ begin
   if (ConfigINI.ReadBool('SETTING','USERMODE',true)=false) and
        (ConfigINI.ReadBool('SETTING','ClientWebAutoStart',true)=true)  then
   begin
-    ServerSocket1.Open;
+    VitalSocket.Open;
     WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
     WinExec('taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
     sleep(1000);

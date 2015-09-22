@@ -36,10 +36,11 @@ type
 
 var
   BPDevice:TMicroLife;
+  IsRemove:boolean;  //確保蹦出視窗時將網後的USB插拔都無效化
   WriteBuf:array[0..16]of byte;
 implementation
 
-uses unit1;
+uses unit1,msg;
 
 procedure TMicroLife.WriteData(Data:pchar;Len:integer);
 var
@@ -74,6 +75,7 @@ const
   MCMD_PCLink:array [0..3] of byte=($12,$16,$18,$21);
   MCMD_PCUnLink:array [0..3] of byte=($12,$16,$18,$20);
   MCMD_SetTime:array [0..3] of byte=($12,$16,$18,$27);
+  MCMD_WEAKUP:array [0..4] of byte=($00,$00,$00,$00,$00);
   HexWord:array[0..15]of char=('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
 var
   MEncodeDate:integer;
@@ -82,6 +84,8 @@ var
   MCMD_SetNowTime: array [0..15] of Byte;
   i:integer;
 begin
+  //喚醒機制要先進行
+  WriteData(@MCMD_WEAKUP,5);
   Delay(500);
   WriteData(@MCMD_PCLink,4);
   Delay(500);
@@ -148,6 +152,13 @@ begin
      MicroLifeBuf[i]:=Packet[i+2];
   end;
 
+
+  //======================過濾不合法資料==============
+  if (((MicroLifeBuf[0]=69) and (MicroLifeBuf[1]=114)) or (MicroLifeBuf[0]=6)) then
+  begin
+    exit;
+  end;
+
   DataLock:=true;
   //======================取出資料====================
   HealthData:=0;
@@ -157,22 +168,20 @@ begin
   BP_Value_1:= HealthData div 1000000;
   BP_Value_2:= (HealthData div 1000) mod 1000;
   BP_Value_3:= HealthData mod 1000;
-  //======================更新時間的特殊動作==========
-  if (BP_Value_1=69)and(BP_Value_2=114)and(BP_Value_3<20)then
+  {
+  //======================校時==========
+  if (BP_Value_1<>0)and(BP_Value_2<>0)and(BP_Value_3<>0) then
   begin
-     WriteTimeToDevice();
-     BP_Value_1:=0;
-     BP_Value_2:=0;
-     BP_Value_3:=0;
+    WriteTimeToDevice();
+    //========================取出時間====================
+    Y:=(MicroLifeBuf[3]shr 4)+(16*(MicroLifeBuf[6]shr 7));
+    M:=MicroLifeBuf[3] mod 16;
+    D:=MicroLifeBuf[4] shr 3;
+    H:=((MicroLifeBuf[4] mod 8)*4)+(MicroLifeBuf[5] shr 6);
+    N:=MicroLifeBuf[5] mod 64;
+    BPTime:=StrtoDatetime(format('%d/%d/%d %d:%d:00',[Y,M,D,H,N]));
   end;
-//========================取出時間====================
-
-  Y:=(MicroLifeBuf[3]shr 4)+(16*(MicroLifeBuf[6]shr 7));
-  M:=MicroLifeBuf[3] mod 16;
-  D:=MicroLifeBuf[4] shr 3;
-  H:=((MicroLifeBuf[4] mod 8)*4)+(MicroLifeBuf[5] shr 6);
-  N:=MicroLifeBuf[5] mod 64;
-  BPTime:=StrtoDatetime(format('%d/%d/%d %d:%d:00',[Y,M,D,H,N]));
+  }
   DataLock:=false;
 end;
 
@@ -180,7 +189,7 @@ end;
 procedure TMicroLife.Execute;
 begin
   self.Priority:= tpLower;
-
+  IsRemove:=false;
 
   CMDTimer:=TTimer.Create(nil);
   CMDTimer.Interval:=500;
@@ -214,6 +223,7 @@ end;
 
 function TMicroLife.HIDEnumerate(HidDev: TJvHidDevice;const Idx: Integer): Boolean;
 begin
+  if IsRemove=true then exit;
   if(HidDev.Attributes.ProductID=$5500)and(HidDev.Attributes.VendorID=$04B4) then
   begin
     BPIsLink:=true;
@@ -223,11 +233,11 @@ begin
     HID.CheckOutByIndex(MicroLifeHID, Idx);
     try
       MicroLifeHID.OnData:=ShowRead;
+      WriteTimeToDevice(); //一插上即校時
     except
       //HID.Enumerate;
     end;
   end;
-
   Result := True;
 end;
 
@@ -254,8 +264,10 @@ end;
 
 procedure TMicroLife.HIDRemoval(HidDev: TJvHidDevice);
 begin
+  if IsRemove=true then exit;
   if(HidDev.Attributes.ProductID=$5500)and(HidDev.Attributes.VendorID=$04B4) then
   begin
+    IsRemove:=true;
     Application.Title := '遠東醫電裝置監控服務器';
     BPIsLink:=false;
     MicroLifeHID:= nil;
@@ -263,19 +275,91 @@ begin
     ReleaseMutex(Mutex);
     application.ProcessMessages;
     //showmessage('偵測到血壓計被拔除'+#13#10+'由於穩定性考量，本程式將自動關閉，請按確定繼續'+#13#10+'請重新執行本程式');
-    showmessage('偵測到血壓計被拔除'+#13#10+'由於穩定性考量，本程式將自動重啟，請按確定繼續'+#13#10+'若沒自動重啟，請手動執行本程式');
+    //showmessage('偵測到血壓計被拔除'+#13#10+'由於穩定性考量，本程式將自動重啟，請按確定繼續'+#13#10+'若沒自動重啟，請手動執行本程式');
+    Alert.ShowModal;
 
     //application.ProcessMessages;
+    WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
+    application.ProcessMessages;
+    WinExec('taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
+    application.ProcessMessages;
+    Form1.KillallThread;
+    sleep(1000);
     ShellExecute(0,'open',pchar('"'+ExtractFileDir(application.ExeName)+'\FEMET_ServicePlugin.exe"'),'',0,0);
-    form1.Close;
-
+    application.ProcessMessages;
+    Form1.CoolTrayIcon1.Enabled:=false;
+    Form1.close;
   end;
 end;
 
 procedure TMicroLife.HIDArrival(HidDev: TJvHidDevice);
 begin
+  if IsRemove=true then exit;
   HID.Enumerate;
 end;
 
 
 end.
+
+
+{
+procedure TMicroLife.GetBPValue();
+var
+  i,j:integer;
+  Part,PIndex:integer;
+  HealthData,Y,M,D,H,N:integer;
+  MicroLifeBuf:array[0..6]of byte;
+begin
+  PIndex:=0;
+  for i:=0 to 3 do
+  begin
+    Part:=DataBuf[i*8]-240;
+    if Part>7 then exit;
+    for j:=1 to Part do
+    begin
+      Packet[PIndex]:=DataBuf[i*8+j];
+      PIndex:=PIndex+1;
+    end;
+  end;
+  for i:=0 to 6 do
+  begin
+     MicroLifeBuf[i]:=Packet[i+2];
+  end;
+
+
+  //======================過濾不合法資料==============
+  if (((MicroLifeBuf[0]=69) and (MicroLifeBuf[1]=114)) or (MicroLifeBuf[0]=6)) then
+  begin
+    exit;
+  end;
+
+  DataLock:=true;
+  //======================取出資料====================
+  HealthData:=0;
+  HealthData:=(MicroLifeBuf[0]*1000000)
+                +(MicroLifeBuf[1]*1000)
+                +(MicroLifeBuf[2]);
+  BP_Value_1:= HealthData div 1000000;
+  BP_Value_2:= (HealthData div 1000) mod 1000;
+  BP_Value_3:= HealthData mod 1000;
+  //======================更新時間的特殊動作==========
+  if (BP_Value_1=69)and(BP_Value_2=114)and(BP_Value_3<20)then
+  begin
+     BP_Value_1:=0;
+     BP_Value_2:=0;
+     BP_Value_3:=0;
+  end
+  else if (BP_Value_1<>0)and(BP_Value_2<>0)and(BP_Value_3<>0) then
+  begin
+    WriteTimeToDevice();
+    //========================取出時間====================
+    Y:=(MicroLifeBuf[3]shr 4)+(16*(MicroLifeBuf[6]shr 7));
+    M:=MicroLifeBuf[3] mod 16;
+    D:=MicroLifeBuf[4] shr 3;
+    H:=((MicroLifeBuf[4] mod 8)*4)+(MicroLifeBuf[5] shr 6);
+    N:=MicroLifeBuf[5] mod 64;
+    BPTime:=StrtoDatetime(format('%d/%d/%d %d:%d:00',[Y,M,D,H,N]));
+  end;
+  DataLock:=false;
+end;
+}
