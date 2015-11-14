@@ -101,6 +101,7 @@ type
     OmronBP_TIME: TEdit;
     OmronBP_LINK: TCheckBox;
     Button3: TSpeedButton;
+    Restart: TServerSocket;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Timer1Timer(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -121,6 +122,9 @@ type
       var ErrorCode: Integer);
     procedure FormCreate(Sender: TObject);
     procedure KillallThread;
+    procedure RestartClientError(Sender: TObject; Socket: TCustomWinSocket;
+      ErrorEvent: TErrorEvent; var ErrorCode: Integer);
+    procedure RestartClientRead(Sender: TObject; Socket: TCustomWinSocket);
   private
     { Private declarations }
   public
@@ -197,6 +201,8 @@ end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  CoolTrayIcon1.IconVisible:=false;
+  CoolTrayIcon1.Enabled:=false;
   StopHook;
   WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
   WinExec('taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
@@ -427,6 +433,7 @@ begin
     CanClose:=False;
     CoolTrayIcon1.HideMainForm;
   end;
+  CoolTrayIcon1.IconVisible:=false;
 end;
 
 procedure TForm1.N2Click(Sender: TObject);
@@ -954,5 +961,24 @@ begin
 //  if SHresult = 4 then ShowMessage('MemoHandle is incorrect');
 end;
 
+
+procedure TForm1.RestartClientError(Sender: TObject;
+  Socket: TCustomWinSocket; ErrorEvent: TErrorEvent;
+  var ErrorCode: Integer);
+begin
+  ErrorCode:=0;
+end;
+
+procedure TForm1.RestartClientRead(Sender: TObject; Socket: TCustomWinSocket);
+var  Packet:string;
+begin
+  Packet:=Socket.ReceiveText;
+   if pos('HIDEICON',Packet)>0 then
+   begin
+      CoolTrayIcon1.IconVisible:=false;
+      CoolTrayIcon1.Enabled:=false;
+      //showmessage('CoolTrayIcon disable');
+   end;
+end;
 
 end.

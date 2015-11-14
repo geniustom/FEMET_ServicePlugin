@@ -43000,4 +43000,13 @@ object Form1: TForm1
     OnTimer = Timer3Timer
     Left = 117
   end
+  object Restart: TServerSocket
+    Active = True
+    Port = 55555
+    ServerType = stNonBlocking
+    OnClientRead = RestartClientRead
+    OnClientError = RestartClientError
+    Left = 159
+    Top = 159
+  end
 end
