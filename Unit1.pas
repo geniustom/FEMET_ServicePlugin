@@ -4,13 +4,14 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls,
+  Dialogs, StdCtrls,WinInet,
   
   BarCode_Lib,SimCard_Lib,Abbot_LIB,BP_Lib,GM_LIB,Scales_LIB,SPO2_Lib,ECG_Lib,OmronBP_Lib,
 
   ExtCtrls, PCSCConnector,SPComm, ScktComp,XML_Lib, OleServer,  ComCtrls,ShellApi,
   CoolTrayIcon, ImgList, Menus, Buttons,inifiles,printers, TeEngine,
-  Series, TeeProcs, Chart, TeeFunci;
+  Series, TeeProcs, Chart, TeeFunci, OleCtrls, SHDocVw, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
 
 type
   TForm1 = class(TForm)
@@ -125,6 +126,8 @@ type
     procedure RestartClientError(Sender: TObject; Socket: TCustomWinSocket;
       ErrorEvent: TErrorEvent; var ErrorCode: Integer);
     procedure RestartClientRead(Sender: TObject; Socket: TCustomWinSocket);
+    procedure WebCommandStateChange(Sender: TObject; Command: Integer;
+      Enable: WordBool);
   private
     { Private declarations }
   public
@@ -140,9 +143,56 @@ var
   SocketBusyFlag:boolean;
   SYS,DIA,HR,GM,MEATIME:string;
   SimCardInfo:string;
+  ComputerName: array [0..1024] of char;
 implementation
 
 {$R *.dfm}
+
+function GetURLAsString(const aURL: string): string;
+var
+  lHTTP: TIdHTTP;
+begin
+  lHTTP := TIdHTTP.Create(nil);
+  try
+    Result := lHTTP.Get(aURL);
+  finally
+    lHTTP.Free;
+  end;
+end;
+
+function GetUrlContent(const Url: string): UTF8String;
+var
+  NetHandle: HINTERNET;
+  UrlHandle: HINTERNET;
+  Buffer: array[0..1023] of byte;
+  BytesRead: dWord;
+  StrBuffer: UTF8String;
+begin
+  Result := '';
+  NetHandle := InternetOpen('Delphi 2009', INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
+  if Assigned(NetHandle) then
+    try
+      UrlHandle := InternetOpenUrl(NetHandle, PChar(Url), nil, 0, INTERNET_FLAG_RELOAD, 0);
+      if Assigned(UrlHandle) then
+        try
+          repeat
+            InternetReadFile(UrlHandle, @Buffer, SizeOf(Buffer), BytesRead);
+            SetString(StrBuffer, PAnsiChar(@Buffer[0]), BytesRead);
+            Result := Result + StrBuffer;
+          until BytesRead = 0;
+        finally
+          InternetCloseHandle(UrlHandle);
+        end
+      else
+        exit;
+        //raise Exception.CreateFmt('Cannot open URL %s', [Url]);
+    finally
+      InternetCloseHandle(NetHandle);
+    end
+  else
+    exit;
+    //raise Exception.Create('Unable to initialize Wininet');
+end;
 
 
 procedure BarCodeTrigger();
@@ -204,6 +254,7 @@ begin
   CoolTrayIcon1.IconVisible:=false;
   CoolTrayIcon1.Enabled:=false;
   StopHook;
+  GetUrlContent('https://slack.com/api/chat.postMessage?token=xoxp-14576011396-14582580754-15487220067-bda74c3bf1&channel=%23service_plugin_start&text=ServicePlugin is closed, Host: '+string(ComputerName)+'&username=bot&pretty=1');
   WinExec('command.com /c taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
   WinExec('taskkill /F /T /IM FEMET_ClientWeb.exe',sw_Hide);
 end;
@@ -813,6 +864,8 @@ var
   Str:string;
   ECGF:TextFile;
 begin
+//暫時不顯示ECG
+{
   if G_ECG.Visible then
   begin
     if ECGPort.ECGComIsOK then
@@ -828,7 +881,7 @@ begin
       end;
     end;
   end;
-
+}
 end;
 
 procedure TForm1.VitalSocketClientError(Sender: TObject;
@@ -838,13 +891,18 @@ begin
    ErrorCode:=0;
 end;
 
+
 procedure TForm1.FormCreate(Sender: TObject);
 var
   SHresult: Byte;
   ConfigINI:tinifile;
   ExecInfo:TShellExecuteInfo;
   i:integer;
+  buflen:integer;
 begin
+  buflen:=1024;
+  GetComputerName(ComputerName, DWord(buflen));
+  GetUrlContent('https://slack.com/api/chat.postMessage?token=xoxp-14576011396-14582580754-15487220067-bda74c3bf1&channel=%23service_plugin_start&text=ServicePlugin is started, Host: '+string(ComputerName)+'&username=bot&pretty=1');
   Button3.Caption:='資料讀取';
   //Button3.Caption:='下一位';
   form1.DoubleBuffered:=true;
@@ -979,6 +1037,12 @@ begin
       CoolTrayIcon1.Enabled:=false;
       //showmessage('CoolTrayIcon disable');
    end;
+end;
+
+procedure TForm1.WebCommandStateChange(Sender: TObject; Command: Integer;
+  Enable: WordBool);
+begin
+   Enable:=false;
 end;
 
 end.

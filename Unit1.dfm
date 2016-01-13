@@ -5,8 +5,8 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = #36960#26481#37291#38651#35037#32622#30435#25511#26381#21209#22120'V3.0'
-  ClientHeight = 528
-  ClientWidth = 800
+  ClientHeight = 522
+  ClientWidth = 796
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -38651,8 +38651,8 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 509
-    Width = 800
+    Top = 503
+    Width = 796
     Height = 19
     Panels = <>
     ParentFont = True
@@ -39319,7 +39319,6 @@ object Form1: TForm1
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 200
     OnTimer = Timer1Timer
     Left = 186
   end
@@ -42990,7 +42989,6 @@ object Form1: TForm1
   end
   object Timer2: TTimer
     Enabled = False
-    Interval = 100
     OnTimer = Timer2Timer
     Left = 1044
     Top = 3
