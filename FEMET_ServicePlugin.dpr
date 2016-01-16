@@ -28,7 +28,7 @@ uses
   Scales_LIB in 'Scales_Lib.pas',
   ECG_Lib in 'ECG_Lib.pas',
   OmronBP_Lib in 'OmronBP_Lib.pas',
-  msg in '..\..\Dropbox\投資理財相關\選擇權部位調整程式\msg.pas' {Alert};
+  msg in 'msg.pas' {Alert};
 
 {$R *.res}
 
