@@ -99,6 +99,8 @@ begin
    if Client.ResultStr<>'' then result:=pchar(Client.ResultStr);
 end;
 
+
+
 function FEMET_GetSIMState(IP:string):pchar;stdcall;far;
 begin
    result:='ERR';
@@ -115,7 +117,12 @@ begin
   if Client.ResultStr<>'' then result:=pchar(Client.ResultStr);
 end;
 
-procedure FEMET_Release;
+procedure FEMET_BPMeasure();stdcall;far;
+begin
+   Client.ClientSocket.Socket.SendText('BPMEASURE');
+end;
+
+procedure FEMET_Release;stdcall;far;
 begin
    Client.ClientSocket.Close;
 end;
@@ -127,6 +134,7 @@ exports
   FEMET_GetSIMState,
   FEMET_GetBARState,
   FEMET_GetVital,
+  FEMET_BPMeasure,
   FEMET_Release;
   
 begin

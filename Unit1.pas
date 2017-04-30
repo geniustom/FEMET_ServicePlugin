@@ -103,6 +103,7 @@ type
     OmronBP_LINK: TCheckBox;
     Button3: TSpeedButton;
     Restart: TServerSocket;
+    BP_Measure: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Timer1Timer(Sender: TObject);
     procedure N1Click(Sender: TObject);
@@ -128,6 +129,7 @@ type
     procedure RestartClientRead(Sender: TObject; Socket: TCustomWinSocket);
     procedure WebCommandStateChange(Sender: TObject; Command: Integer;
       Enable: WordBool);
+    procedure BP_MeasureClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -551,7 +553,10 @@ begin
       SIMXMLPATH.Text:='';
       Socket.SendText('OK');
    end;
-
+   if pos('BPMEASURE',Packet)>0 then
+   begin
+      BPDevice.StartMeasure;
+   end;
    if pos('GetVital',Packet)>0 then
    begin
       VitalData:=TStringList.Create;
@@ -564,6 +569,8 @@ begin
       VitalData.Add(SC_Value.TEXT);
       VitalData.Add(SPO2_Value.TEXT);
       VitalData.Add(ECG_SPO2.TEXT);
+      VitalData.Add(BP_Measure_errmsg);
+      BP_Measure_errmsg:='';  //發完即清空
       //VitalData.Add(ECGQueue.ShowData);
       Socket.SendText(VitalData.DelimitedText);
    end;
@@ -1043,6 +1050,11 @@ procedure TForm1.WebCommandStateChange(Sender: TObject; Command: Integer;
   Enable: WordBool);
 begin
    Enable:=false;
+end;
+
+procedure TForm1.BP_MeasureClick(Sender: TObject);
+begin
+  BPDevice.StartMeasure;
 end;
 
 end.

@@ -32,11 +32,14 @@ type
     BPTime:TDateTime;
     DataLock:boolean;
     procedure Execute; override;
+    procedure StartMeasure();
+    procedure StopMeasure();
   end;
 
 var
   BPDevice:TMicroLife;
   IsRemove:boolean;  //確保蹦出視窗時將網後的USB插拔都無效化
+  BP_Measure_errmsg:string;
   WriteBuf:array[0..16]of byte;
 implementation
 
@@ -156,6 +159,13 @@ begin
   //======================過濾不合法資料==============
   if (((MicroLifeBuf[0]=69) and (MicroLifeBuf[1]=114)) or (MicroLifeBuf[0]=6)) then
   begin
+    if((MicroLifeBuf[0]=69) and (MicroLifeBuf[1]=114))then
+    begin
+      BP_Measure_errmsg:='BP Er:'+char(MicroLifeBuf[2]+48);
+      for i:=0 to length(DataBuf)-1 do DataBuf[i]:=0;
+      for i:=0 to length(Packet)-1 do Packet[i]:=0;
+      //StopMeasure;
+    end;
     exit;
   end;
 
@@ -298,6 +308,41 @@ begin
   HID.Enumerate;
 end;
 
+procedure TMicroLife.StartMeasure();
+const
+  MCMD_WEAKUP:array [0..4] of byte=($00,$00,$00,$00,$00);
+  MCMD_StartMeasure:array [0..3] of byte=($12,$16,$18,$25);
+  MCMD_PCLink:array [0..3] of byte=($12,$16,$18,$21);
+  MCMD_PCUnLink:array [0..3] of byte=($12,$16,$18,$20);
+begin
+  //self.Suspend;
+  //喚醒機制要先進行
+  WriteData(@MCMD_WEAKUP,5);
+  Delay(500);
+  WriteData(@MCMD_PCLink,4);
+  Delay(500);
+  WriteData(@MCMD_StartMeasure,4);
+  Delay(500);
+  //WriteData(@MCMD_PCUnLink,4);
+  //Delay(500);
+end;
+
+procedure TMicroLife.StopMeasure();
+const
+  MCMD_WEAKUP:array [0..4] of byte=($00,$00,$00,$00,$00);
+  MCMD_StopMeasure:array [0..3] of byte=($12,$16,$18,$19);
+  MCMD_PCLink:array [0..3] of byte=($12,$16,$18,$21);
+  MCMD_PCUnLink:array [0..3] of byte=($12,$16,$18,$20);
+begin
+  WriteData(@MCMD_WEAKUP,5);
+  Delay(500);
+  WriteData(@MCMD_PCLink,4);
+  Delay(500);
+  WriteData(@MCMD_StopMeasure,4);
+  Delay(500);
+  //WriteData(@MCMD_PCUnLink,4);
+  //Delay(500);
+end;
 
 end.
 
@@ -363,3 +408,4 @@ begin
   DataLock:=false;
 end;
 }
+

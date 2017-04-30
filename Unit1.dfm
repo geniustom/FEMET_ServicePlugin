@@ -38416,7 +38416,7 @@ object Form1: TForm1
     Visible = False
     object Label3: TLabel
       Left = 9
-      Top = 60
+      Top = 51
       Width = 120
       Height = 31
       Caption = #25910'  '#32302'  '#22739#65306
@@ -38429,7 +38429,7 @@ object Form1: TForm1
     end
     object Label4: TLabel
       Left = 9
-      Top = 108
+      Top = 99
       Width = 120
       Height = 31
       Caption = #33298'  '#24373'  '#22739#65306
@@ -38442,7 +38442,7 @@ object Form1: TForm1
     end
     object Label5: TLabel
       Left = 9
-      Top = 150
+      Top = 141
       Width = 120
       Height = 31
       Caption = #24515'        '#36339#65306
@@ -38455,7 +38455,7 @@ object Form1: TForm1
     end
     object Label7: TLabel
       Left = 9
-      Top = 192
+      Top = 177
       Width = 120
       Height = 31
       Caption = #37327#28204#26178#38291#65306
@@ -38468,7 +38468,7 @@ object Form1: TForm1
     end
     object BP_SYS: TEdit
       Left = 132
-      Top = 57
+      Top = 48
       Width = 106
       Height = 43
       Ctl3D = False
@@ -38484,7 +38484,7 @@ object Form1: TForm1
     end
     object BP_DIA: TEdit
       Left = 132
-      Top = 102
+      Top = 93
       Width = 106
       Height = 43
       Ctl3D = False
@@ -38500,7 +38500,7 @@ object Form1: TForm1
     end
     object BP_HR: TEdit
       Left = 132
-      Top = 147
+      Top = 138
       Width = 106
       Height = 43
       Ctl3D = False
@@ -38516,7 +38516,7 @@ object Form1: TForm1
     end
     object BP_TIME: TEdit
       Left = 132
-      Top = 201
+      Top = 183
       Width = 106
       Height = 21
       Ctl3D = False
@@ -38540,12 +38540,22 @@ object Form1: TForm1
       Checked = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -24
+      Font.Height = -21
       Font.Name = #24494#36575#27491#40657#39636
       Font.Style = [fsBold]
       ParentFont = False
       State = cbChecked
       TabOrder = 4
+    end
+    object BP_Measure: TButton
+      Left = 90
+      Top = 207
+      Width = 76
+      Height = 22
+      Caption = #38283#22987#37327#28204
+      TabOrder = 5
+      Visible = False
+      OnClick = BP_MeasureClick
     end
   end
   object G_5: TGroupBox
