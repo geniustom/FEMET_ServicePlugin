@@ -40,6 +40,7 @@ var
   BPDevice:TMicroLife;
   IsRemove:boolean;  //確保蹦出視窗時將網後的USB插拔都無效化
   BP_Measure_errmsg:string;
+  Measure_StartTimestamp:int64;
   WriteBuf:array[0..16]of byte;
 implementation
 
@@ -314,6 +315,8 @@ const
   MCMD_StartMeasure:array [0..3] of byte=($12,$16,$18,$25);
   MCMD_PCLink:array [0..3] of byte=($12,$16,$18,$21);
   MCMD_PCUnLink:array [0..3] of byte=($12,$16,$18,$20);
+var
+  i:integer;
 begin
   //self.Suspend;
   //喚醒機制要先進行
@@ -325,6 +328,12 @@ begin
   Delay(500);
   //WriteData(@MCMD_PCUnLink,4);
   //Delay(500);
+
+  BP_Value_1:=0;
+  BP_Value_2:=0;
+  BP_Value_3:=0;
+  for i:=0 to length(DataBuf)-1 do
+    DataBuf[i]:=0;
 end;
 
 procedure TMicroLife.StopMeasure();
